@@ -10,7 +10,7 @@ client = EvernoteClient(token=dev_token)
 
 NOTE_STORE = client.get_note_store()
 
-def delete_all()
+def delete_all():
 	notebooks = NOTE_STORE.listNotebooks()
 	print ('DELETING ALL NOTES')
     for n in notebooks:
