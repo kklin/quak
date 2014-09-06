@@ -8,20 +8,16 @@ client = EvernoteClient(token=dev_token)
 
 NOTE_STORE = client.get_note_store()
 
-
 def make_new_question(title, content):
     note = Types.Note()
     note.title = title
     note.content = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">'
     note.content += '<en-note>' + content + '</en-note>'
-    # set vote count
-    # generate id -- actually evernote probs has internal id's we can use
     note = NOTE_STORE.createNote(note)
-    NOTE_STORE.setNoteApplicationDataEntry(dev_token,note.guid,"kklin","1")
+    NOTE_STORE.setNoteApplicationDataEntry(dev_token,note.guid,"votes","1")
     return note.guid
 
 #make_new_question('question2', 'testing')
-
 
 def get_questions():
     notebooks = NOTE_STORE.listNotebooks()
@@ -36,18 +32,18 @@ def get_questions():
             # print('Content: ' + NOTE_STORE.getNoteContent(dev_token, note.guid))
             print('Application data: ' +
                     NOTE_STORE.getNoteApplicationDataEntry(dev_token,
-                        note.guid, "kklin"))
+                        note.guid, "votes"))
             print('=========================================')
 
 def increment_vote(guid):
-    new_vote = int(NOTE_STORE.getNoteApplicationDataEntry(dev_token, guid, "kklin")) + 1
-    NOTE_STORE.setNoteApplicationDataEntry(dev_token,guid,"kklin",
+    new_vote = int(NOTE_STORE.getNoteApplicationDataEntry(dev_token, guid, "votes")) + 1
+    NOTE_STORE.setNoteApplicationDataEntry(dev_token,guid,"votes",
             str(new_vote))
 
-get_questions()
-increment_vote("8075822e-6c06-4ad0-99ae-7ebaea6642d6")
-guid = make_new_question('Question 4', 'still testing')
-get_questions()
+#get_questions()
+#increment_vote("a439e498-2e35-4ce5-a799-d0d329df7439")
+#guid = make_new_question('Question 4', 'still testing')
+#get_questions()
 # increment_vote(guid)
     
 #def get_question(id):
