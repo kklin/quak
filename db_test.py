@@ -47,7 +47,7 @@ def gen_student_note(guids):
     new_note = ""
     for guid in guids:
         note = NOTE_STORE.getNote(dev_token, guid,False,False,False,False)
-        new_note += "<b>" + note.title + "</b> (" + str(get_votes(guid)) + " votes) <br/>"
+        new_note += "<b>" + note.title + "</b> (" + str(get_votes(guid)) + " votes) <br/><br>"
     make_new_question('Questions from Lecture', new_note)
 
 #get_questions()
