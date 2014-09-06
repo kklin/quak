@@ -36,9 +36,19 @@ def get_questions():
             print('=========================================')
 
 def increment_vote(guid):
-    new_vote = int(NOTE_STORE.getNoteApplicationDataEntry(dev_token, guid, "votes")) + 1
+    new_vote = get_votes(guid) + 1
     NOTE_STORE.setNoteApplicationDataEntry(dev_token,guid,"votes",
             str(new_vote))
+
+def get_votes(guid):
+    return int(NOTE_STORE.getNoteApplicationDataEntry(dev_token, guid, "votes"))
+
+def gen_student_note(guids):
+    new_note = ""
+    for guid in guids:
+        note = NOTE_STORE.getNote(dev_token, guid,False,False,False,False)
+        new_note += "<b>" + note.title + "</b> (" + str(get_votes(guid)) + " votes) <br/>"
+    make_new_question('Questions from Lecture', new_note)
 
 #get_questions()
 #increment_vote("a439e498-2e35-4ce5-a799-d0d329df7439")
