@@ -1,0 +1,114 @@
+@mixin prefix( $prop, $value ) {
+	// vendor prefixes
+	-moz-#{$prop}:		$value;
+	-webkit-#{$prop}:	$value;
+	-o-#{$prop}: 		$value;
+	
+	// standard
+	#{$prop}:			$value;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Gotham", "Helvetica Neue", Helvetica, sans-serif;
+	background-color: #296a4b;
+}
+
+#topbar {
+	display: block;
+	width: 100%;
+	height: 75px;
+	line-height: 75px;
+	background-color: #333;
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+}
+
+#wrapper {
+	margin: 0 auto;
+	max-width: 800px;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+ul {
+	list-style-type: none;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	padding: 10px 100px 25px;
+	margin-bottom: 15px;
+	text-align: left;
+	color: #fff;
+	border-bottom: 1px solid #0a522e;
+	font-size: 18px;
+	/*@include prefix(border-radius, 12px);*/
+
+	span {
+		text-align: right;
+	}
+}
+
+.none {
+	color: #77ba8e;
+}
+
+.high {
+	color: #caffe1;
+}
+
+.med {
+	color: #aef2c4;
+}
+
+.low {
+	color: #92d6a9;
+}
+
+.info {
+	display: inline-block;
+	float: right;
+
+	.number, .vote {
+		display: inline-block;
+	}
+}
+
+form#write {
+	text-align: center;
+}
+
+input:focus {
+	outline: 0;
+}
+
+input[type="text"] {
+	background-color: #fff;
+	border: 0;
+	color: #296a4b;
+	height: 50px;
+	width: 60%;
+	font: 16px "Gotham";
+	padding: 10px;
+}
+
+input[type="submit"] {
+	background-color: #fff;
+	border: 0;
+}
+	
