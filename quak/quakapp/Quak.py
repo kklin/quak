@@ -42,7 +42,7 @@ def make_question(question_text, guid): # guid of the notebook to add to
     except Exception:
         return None
     NOTE_STORE.setNoteApplicationDataEntry(auth.dev_token, note.guid, "votes", "1")
-    question = Question(note.guid, NOTE_STORE)
+    question = Question(question_text, '', 1, note.guid, NOTE_STORE)
     return question
 
 def make_presentation(title):
