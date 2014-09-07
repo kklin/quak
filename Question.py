@@ -1,4 +1,4 @@
-import quak
+import auth
 
 class Question:
 
@@ -12,16 +12,18 @@ class Question:
     def __init__(self, guid, note_store):
         self.NOTE_STORE = note_store
         self.guid = guid
-        note = NOTE_STORE.getNote(auth.dev_token, self.guid, False, False, False, False)
+        note = self.NOTE_STORE.getNote(auth.dev_token, self.guid, False, False, False, False)
         self.question = note.title
         self.answer = ""
-        self.sync_vote_counts()
+        self.sync_vote_count()
 
     def sync_vote_count(self):
-        self.votes = quak.get_votes(self.guid)
+        self.votes = int(self.NOTE_STORE.getNoteApplicationDataEntry(auth.dev_token, self.guid, "votes"))
 
     def increment_vote_count(self):
         self.sync_vote_count()
-        NOTE_STORE.setNoteApplicationDataEntry(auth.dev_token, self.guid,
-                str(self.votes + 1))
+        self.NOTE_STORE.setNoteApplicationDataEntry(auth.dev_token, self.guid,"votes", str(self.votes + 1))
         self.sync_vote_count()
+
+    def __repr__(self):
+        return "Question: " + self.question + " ; Votes: " + str(self.votes) + " ; guid: " + self.guid;
