@@ -37,6 +37,13 @@ body {
   #topbar #title {
     text-align: center;
     margin-right: 100px; }
+  #topbar #links {
+    margin-top: -65px; }
+    #topbar #links img {
+      height: 35px; }
+    #topbar #links .button {
+      float: right;
+      margin-right: 25px; }
 
 #wrapper {
   margin: 0 auto 100px auto;
@@ -139,6 +146,7 @@ button#create {
   margin-top: 20px; }
 
 .addquestion {
+  background-color: transparent;
   text-align: center;
   position: fixed;
   bottom: 20px;
