@@ -24,6 +24,19 @@ def create(request):
     pass
   return render_to_response('quakapp/create.html', {}, context)
 
+def sorted_view(request, guid):
+  context = RequestContext(request)
+  sorted_questions = Quak.get_sorted_questions(guid)
+  context_dict = {}
+  context_dict['questions'] = []
+  for question in sorted_questions:
+    context_dict['questions'].append({
+        'title': question.question
+      , 'votes': question.votes
+      , 'guid': question.guid
+    })
+  return render_to_response('quakapp/sorted_view.html', context_dict, context)
+
 def page(request, guid):
   context = RequestContext(request)
   context_dict = {}

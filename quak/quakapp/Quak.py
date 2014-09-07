@@ -13,6 +13,7 @@ NOTE_STORE = client.get_note_store()
 def get_sorted_questions(guid): # guid of the notebook
     questions = get_questions(guid)
     questions.sort(key = lambda x: x.votes)
+    questions.reverse()
     return questions
 
 def get_questions(guid): # guid of the notebook
@@ -57,13 +58,19 @@ def make_presentation(title):
     except Exception:
         return None
 
-def gen_student_evernote(notebook_guid): # guid of the notebook containing q's
-    questions = get_sorted_questions()
-    new_note = ""
-    for question in questions:
-        new_note += "<b>" + question.question + "</b> (" + str(question.votes)
-        + " votes) <br/><br/>"
-    # get student's oauth and add to their account
+def gen_student_evernote(notebook_guid, token): # guid of the notebook containing q's
+    questions = get_sorted_questions(notebook_guid)
+    presentation = get_presentation(notebook_guid)
+    new_note_text = ""
+    for i in range(5 if len(questions) > 5 else len(questions)):
+        new_note_text += "<b>" + questions[i].question + "</b> (" + str(questions[i].votes) + " votes) <br/><br/>"
+    note = Types.Note()
+    note.title = 'Top Questions from ' + presentation.title
+    note.content = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">'
+    note.content += '<en-note>' + new_note_text + '</en-note>'
+    client = EvernoteClient(token=token)
+    student_note_store = client.get_note_store()
+    student_note_store.createNote(token, note)
 
 def get_question_by_guid(guid):
     note = NOTE_STORE.getNote(auth.dev_token, guid, False, False, False, False)

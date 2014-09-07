@@ -17,9 +17,23 @@
     </div>
 
     <div id="wrapper">
-    <ol>
-      <li>Question</li>
-      <li>Question></li>
-    </ol>
+    <ul id='qlist'>
+      {% if questions %}
+        {% for question in questions %}
+          <li class='med'>
+            {{ question.title }}
+            <span class="info">
+              <div class="number">{{ question.votes }}</div>
+              <div class="vote voteIncrement">
+                +
+                <input type='hidden' id='question_guid' value='{{ question.guid }}'>
+              </div>
+            </span>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li> No questions yet! </li>
+      {% endif %}
+    </ul>
   </body>
 </html>
