@@ -5,5 +5,6 @@ urlpatterns = patterns('',
   url(r'^$', views.index, name='index'),
   url(r'^create/$', views.create, name='create'),
   url(r'presentation/(?P<guid>[-\w]+)/$', views.page, name='page'),
+  url(r'save/(?P<guid>[-\w]+)/$', views.auth, name='auth'),
   url(r'incrementVote/$', views.increment_vote, name='increment_vote'),
   url(r'newQuestion/$', views.new_question, name='new_question'))

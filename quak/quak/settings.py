@@ -17,7 +17,6 @@ PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 MEDIA_PATH = os.path.join(PROJECT_PATH, 'media')
-DATABASE_PATH = os.path.join(PROJECT_PATH, 'storiesapp.db')
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -44,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_auth'
 )
 
 MIDDLEWARE_CLASSES = (
