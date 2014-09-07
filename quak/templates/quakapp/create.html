@@ -13,7 +13,7 @@
     <div id="topbar">
       <div id="logo"><img src="../../static/images/logo.png"></div>
       <div id="title">
-        CS 61C Questions
+        Make your presentation
       </div>
     </div>
 
@@ -21,11 +21,10 @@
       <form id="create" action='/quakapp/create/' method='POST'>
         {% csrf_token %}
         <div class="inputinfo">Presentation Name: <input type="text" name="title" id='title'></div>
+        <div class="center">
+          <button id="create" type='submit'>Create my Q&A</button>
+        </div>
       </form>
-
-      <div class="center">
-        <button id="create" type='submit'>Create my Q&A</button>
-      </div>
     </div>
   </body>
 </html>
