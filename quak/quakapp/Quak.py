@@ -28,8 +28,7 @@ def get_questions(guid): # guid of the notebook
     return questions
 
 def get_votes(guid):
-    return int(self.NOTE_STORE.getNoteApplicationDataEntry(auth.dev_token,
-        self.guid, "votes"))
+    return int(NOTE_STORE.getNoteApplicationDataEntry(auth.dev_token, guid, "votes"))
 
 def get_presentation(guid):
     notebook_title = NOTE_STORE.getNotebook(auth.dev_token, guid).name
