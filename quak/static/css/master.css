@@ -3,6 +3,11 @@
   src: url("../fonts/Gotham-Medium.otf");
   font-weight: normal;
   font-style: normal; }
+@font-face {
+  font-family: 'Gotham';
+  src: url("../fonts/Gotham-Bold.otf");
+  font-weight: bold;
+  font-style: normal; }
 html {
   box-sizing: border-box; }
 
@@ -73,6 +78,15 @@ li {
   float: right; }
   .info .number, .info .vote {
     display: inline-block; }
+  .info .vote {
+    font-weight: bold;
+    -moz-transition: color 0.2s ease;
+    -webkit-transition: color 0.2s ease;
+    -o-transition: color 0.2s ease;
+    transition: color 0.2s ease; }
+  .info .vote:hover {
+    cursor: pointer;
+    color: #fff; }
 
 form#write {
   text-align: center; }
@@ -107,7 +121,7 @@ input[type="submit"] {
 .inputinfo {
   margin: 10px;
   color: #fff;
-  text-align: right; }
+  text-align: center; }
 
 button#create {
   padding: 10px;
