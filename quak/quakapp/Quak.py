@@ -37,7 +37,10 @@ def make_question(question_text, guid): # guid of the notebook to add to
     note.content = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">'
     note.content += '<en-note></en-note>'
     note.notebookGuid = guid
-    note = NOTE_STORE.createNote(note)
+    try:
+        note = NOTE_STORE.createNote(note)
+    except Exception:
+        return None
     NOTE_STORE.setNoteApplicationDataEntry(auth.dev_token, note.guid, "votes", "1")
     question = Question(note.guid, NOTE_STORE)
     return question
@@ -45,7 +48,10 @@ def make_question(question_text, guid): # guid of the notebook to add to
 def make_presentation(title):
     notebook = Types.Notebook()
     notebook.name = title
-    return NOTE_STORE.createNotebook(auth.dev_token, notebook).guid
+    try:
+        return NOTE_STORE.createNotebook(auth.dev_token, notebook).guid
+    except Exception:
+        return None
 
 def gen_student_evernote(notebook_guid): # guid of the notebook containing q's
     questions = get_sorted_questions()
