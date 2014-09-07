@@ -7,7 +7,7 @@ from Presentation import Presentation
 import Quak
 
 def index(request):
-  return HttpResponseRedirect('/quakapp/create/')
+  return HttpResponseRedirect('/create/')
 
 def create(request):
   context = RequestContext(request)
@@ -16,7 +16,7 @@ def create(request):
     if not title:
       title = 'Untitled'
     guid = Quak.make_presentation(title)
-    return HttpResponseRedirect('/quakapp/presentation/' + guid)
+    return HttpResponseRedirect('/presentation/' + guid)
   else:
     pass
   return render_to_response('quakapp/create.html', {}, context)
@@ -49,4 +49,4 @@ def new_question(request):
     title = request.POST['question_title']
     guid = request.POST['presentation_guid']
     new_question = Quak.make_question(title, guid)
-    return HttpResponseRedirect('/quakapp/presentation/' + guid)
+    return HttpResponseRedirect('/presentation/' + guid)

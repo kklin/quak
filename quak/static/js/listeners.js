@@ -4,7 +4,7 @@ $(function() {
     var number = $(this).parent().find('.number');
     $.ajax({
         type: 'GET'
-      , url: '/quakapp/incrementVote?guid=' + question_guid
+      , url: '/incrementVote?guid=' + question_guid
     }).done(function(data) {
       number.html(parseInt(number.html()) + 1);
     }).fail(function() {

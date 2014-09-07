@@ -37,7 +37,7 @@
       {% endif %}
     </ul>
       
-  <form action='/quakapp/newQuestion/' method='POST' id="createQuestion">
+  <form action='/newQuestion/' method='POST' id="createQuestion">
     {% csrf_token %}
     <input type="text" id='question_title' name='question_title' placeholder="What do you want to ask?">
     <input type='hidden' id='presentation_guid' name='presentation_guid' value="{{ guid }}">
