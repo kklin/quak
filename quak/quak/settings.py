@@ -33,6 +33,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EVERNOTE_CONSUMER_KEY = ''
+EVERNOTE_CONSUMER_SECRET = ''
+EVERNOTE_DEBUG = True
+
 
 # Application definition
 

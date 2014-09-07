@@ -5,8 +5,9 @@ from django.utils import timezone
 from Question import Question
 from Presentation import Presentation
 import Quak
-
-last_guid = ""
+from evernote.api.client import EvernoteClient
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 
 EN_CONSUMER_KEY = 'kklin'
 EN_CONSUMER_SECRET = '78932d6049811172'
@@ -25,7 +26,7 @@ def index(request):
   return HttpResponseRedirect('/create/')
 
 def auth(request, guid):
-  last_guid = guid
+  request.session['guid'] = guid
   client = get_evernote_client()
   callbackUrl = 'http://%s%s' % (
       request.get_host(), reverse('evernote_callback'))
@@ -39,19 +40,23 @@ def auth(request, guid):
   return redirect(client.get_authorize_url(request_token))
 
 def callback(request):
+  print "hello"
   access_token = ""
   try:
       client = get_evernote_client()
+      print "oauth token " + request.session['oauth_token']
       access_token = client.get_access_token(
           request.session['oauth_token'],
           request.session['oauth_token_secret'],
           request.GET.get('oauth_verifier', '')
       )
-      Quak.gen_student_evernote(last_guid, access_token)
+      print "got access token"
+      print access_token
+      Quak.gen_student_evernote(request.session['guid'], access_token)
   except KeyError:
       return redirect('/')
 
-  return HttpResponse('done')
+  return HttpResponseRedirect('/presentation/' + request.session['guid'])
 
 def create(request):
   context = RequestContext(request)
@@ -67,6 +72,19 @@ def create(request):
   else:
     pass
   return render_to_response('quakapp/create.html', {}, context)
+
+def sorted_view(request, guid):
+  context = RequestContext(request)
+  sorted_questions = Quak.get_sorted_questions(guid)
+  context_dict = {}
+  context_dict['questions'] = []
+  for question in sorted_questions:
+    context_dict['questions'].append({
+        'title': question.question
+      , 'votes': question.votes
+      , 'guid': question.guid
+    })
+  return render_to_response('quakapp/sorted_view.html', context_dict, context)
 
 def page(request, guid):
   context = RequestContext(request)
