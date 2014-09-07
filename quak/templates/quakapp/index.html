@@ -4,11 +4,56 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>Quak - Index</title>
-    <link href="{% static "css/index.css" %}" rel='stylesheet' type='text/css'>
+    <link href="{% static "css/master.css" %}" rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static "js/index.js" %}"></script>
     </head>
   <body>
-    <h1><a href='/storiesapp/'><font color='black'>Quak</font></a> - Index</h1>
+    
+    <div id="topbar">
+      <div id="logo"><img src="../../static/images/logo.png"></div>
+      <div id="title">
+        CS 61C Questions
+      </div>
+    </div>
+
+      <div id="wrapper">
+    <ul id="qlist">
+      <li class="med">
+        What is internet??
+        <span class="info">
+          <div class="number">3</div>
+          <div class="vote">+</div>
+        </span>
+      </li>
+      <li class="high">
+        How do you binary??
+        <span class="info">
+          <div class="number">5</div>
+          <div class="vote">+</div>
+        </span>
+      </li>
+      <li class="none">
+        What is the secret ingredient to the Krabby Patty? fjsilfkahajerhehriowlrwhwroai
+        <span class="info">
+          <div class="number">0</div>
+          <div class="vote">+</div>
+        </span>
+      </li>
+      <li class="low">
+        How are you?
+        <span class="info">
+          <div class="number">2</div>
+          <div class="vote">+</div>
+        </span>
+      </li>
+    </ul>
+  <form type="input" id="write">
+    <input type="text" placeholder="What do you want to ask?">
+    <input type="submit" value=" ">
+  </form>
+
+  </div>
+  
   </body>
 </html>
