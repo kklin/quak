@@ -10,8 +10,9 @@ def index(request):
 def create(request):
   context = RequestContext(request)
   if request.method == 'POST':
-    # do form checking, and then create a new forum notebook for a user
     title = request.POST['title']
+    if not title:
+      title = 'Untitled'
     guid = 123
     return HttpResponseRedirect('/quakapp/page/' + guid)
   else:
@@ -39,3 +40,20 @@ def page(request, notebook_id):
     , 'guid': 1
   }]
   return render_to_response('quakapp/page.html', context_dict, context)
+
+def increment_vote(request):
+  context = RequestContext(request)
+  guid = request.GET.get('guid', '')
+  question = get_question(guid)
+  if question:
+    question = get_question(guid)
+    return HttpResponse('success')
+  else:
+    return HttpResponse('error')
+
+def new_question(request):
+  return False
+
+
+def get_question(guid):
+  return False
