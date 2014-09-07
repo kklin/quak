@@ -11,7 +11,7 @@
   <body>
     
     <div id="topbar">
-      <div id="logo"><img src="{% static "images/logo.png" %}"></div>
+      <div id="logo"><a href="/"><img src="{% static "images/logo.png" %}"></a></div>
       <div id="title">
         {{ title }}
       </div>
@@ -37,12 +37,14 @@
       {% endif %}
     </ul>
       
-  <form action='/newQuestion/' method='POST' id="createQuestion" style='text-align:center;'>
-    {% csrf_token %}
-    <input type="text" id='question_title' name='question_title' placeholder="What do you want to ask?">
-    <input type='hidden' id='presentation_guid' name='presentation_guid' value="{{ guid }}">
-    <input type="submit" value=" ">
-  </form>
+  <div class="addquestion">
+    <form action='/newQuestion/' method='POST' id="createQuestion">
+      {% csrf_token %}
+      <input type="text" id='question_title' name='question_title' placeholder="What do you want to ask?">
+      <input type='hidden' id='presentation_guid' name='presentation_guid' value="{{ guid }}">
+      <input type="submit" value=" ">
+    </form>
+  </div>
 
   </div>
   
