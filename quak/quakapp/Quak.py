@@ -23,8 +23,13 @@ def get_questions(guid): # guid of the notebook
     spec.includeTitle = True
     notes = NOTE_STORE.findNotesMetadata(auth.dev_token, noteFilter, 0 , 100, spec)
     for note in notes.notes:
-        questions += [ Question(note.guid, NOTE_STORE) ]
+        votes = get_votes(note.guid)
+        questions += [ Question(note.title, '', votes,note.guid, NOTE_STORE) ]
     return questions
+
+def get_votes(guid):
+    return int(self.NOTE_STORE.getNoteApplicationDataEntry(auth.dev_token,
+        self.guid, "votes"))
 
 def get_presentation(guid):
     notebook_title = NOTE_STORE.getNotebook(auth.dev_token, guid).name
@@ -62,4 +67,5 @@ def gen_student_evernote(notebook_guid): # guid of the notebook containing q's
     # get student's oauth and add to their account
 
 def get_question_by_guid(guid):
-    return Question(guid, NOTE_STORE)
+    note = NOTE_STORE.getNote(auth.dev_token, self.guid, False, False, False, False)
+    return Question(note.title, '', get_votes(guid), guid, NOTE_STORE)
