@@ -3,17 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <title>Quak - Index</title>
-    <link href="{% static "css/create.css" %}" rel='stylesheet' type='text/css'>
+    <title>Quak - Create</title>
+    <link href="{% static "css/master.css" %}" rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
     <script type="text/javascript" src="{% static "js/create.js" %}"></script>
+
     </head>
   <body>
-    <h1><a href='/storiesapp/'><font color='black'>Quak</font></a> - Create</h1>
-    <form action='/quakapp/create/' method='POST'>
-      {% csrf_token %}
-      <input type='text' name='title' id='title'>
-      <input type='submit' value='Submit'>
-    </form>
+    <div id="topbar">
+      <div id="logo"><img src="../../static/images/logo.png"></div>
+      <div id="title">
+        CS 61C Questions
+      </div>
+    </div>
+
+    <div id="wrapper">
+      <form id="create" action='/quakapp/create/' method='POST'>
+        {% csrf_token %}
+        <div class="inputinfo">Presentation Name: <input type="text" name="title" id='title'></div>
+      </form>
+
+      <div class="center">
+        <button id="create" type='submit'>Create my Q&A</button>
+      </div>
+    </div>
   </body>
 </html>
