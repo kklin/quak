@@ -39,7 +39,7 @@ body {
     margin-right: 100px; }
 
 #wrapper {
-  margin: 0 auto;
+  margin: 0 auto 100px auto;
   max-width: 800px; }
 
 ol {
@@ -77,9 +77,12 @@ li {
   display: inline-block;
   float: right; }
   .info .number, .info .vote {
-    display: inline-block; }
+    display: inline-block;
+    vertical-align: middle; }
   .info .vote {
     font-weight: bold;
+    font-size: 25px;
+    vertical-align: middle;
     -moz-transition: color 0.2s ease;
     -webkit-transition: color 0.2s ease;
     -o-transition: color 0.2s ease;
@@ -135,8 +138,19 @@ button#create {
   font: 16px "Gotham";
   margin-top: 20px; }
 
-.center {
-  text-align: center; }
+.addquestion {
+  text-align: center;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  -moz-transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -o-transform: translate(-50%);
+  transform: translate(-50%);
+  width: 500px; }
 
 form#create {
   margin-top: 50px; }
+
+.center {
+  text-align: center; }

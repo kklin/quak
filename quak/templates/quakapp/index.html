@@ -37,7 +37,7 @@
       {% endif %}
     </ul>
       
-  <div class="center">
+  <div class="addquestion">
     <form action='/newQuestion/' method='POST' id="createQuestion">
       {% csrf_token %}
       <input type="text" id='question_title' name='question_title' placeholder="What do you want to ask?">
