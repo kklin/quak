@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Gotham';
-  src: url("fonts/Gotham-Medium.otf");
+  src: url("../fonts/Gotham-Medium.otf");
   font-weight: normal;
   font-style: normal; }
 html {
@@ -30,7 +30,8 @@ body {
       height: 45px;
       margin: 15px; }
   #topbar #title {
-    display: inline-block; }
+    text-align: center;
+    margin-right: 100px; }
 
 #wrapper {
   margin: 0 auto;
@@ -99,4 +100,29 @@ input[type="submit"] {
   background-color: transparent;
   width: 50px;
   height: 50px;
-  border: 0; }
+  border: 0;
+  margin-left: 10px; }
+
+/*  CREATE PAGE  */
+.inputinfo {
+  margin: 10px;
+  color: #fff;
+  text-align: right; }
+
+button#create {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: 0px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  font: 16px "Gotham";
+  margin-top: 20px; }
+
+.center {
+  text-align: center; }
+
+form#create {
+  margin-top: 50px; }
