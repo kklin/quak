@@ -16,7 +16,10 @@ def create(request):
     if not title:
       title = 'Untitled'
     guid = Quak.make_presentation(title)
-    return HttpResponseRedirect('/presentation/' + guid)
+    if guid:
+        return HttpResponseRedirect('/presentation/' + guid)
+    else:
+        return HttpResponseRedirect('/create/')
   else:
     pass
   return render_to_response('quakapp/create.html', {}, context)

@@ -23,8 +23,12 @@ def get_questions(guid): # guid of the notebook
     spec.includeTitle = True
     notes = NOTE_STORE.findNotesMetadata(auth.dev_token, noteFilter, 0 , 100, spec)
     for note in notes.notes:
-        questions += [ Question(note.guid, NOTE_STORE) ]
+        votes = get_votes(note.guid)
+        questions += [ Question(note.title, '', votes,note.guid, NOTE_STORE) ]
     return questions
+
+def get_votes(guid):
+    return int(NOTE_STORE.getNoteApplicationDataEntry(auth.dev_token, guid, "votes"))
 
 def get_presentation(guid):
     notebook_title = NOTE_STORE.getNotebook(auth.dev_token, guid).name
@@ -37,15 +41,21 @@ def make_question(question_text, guid): # guid of the notebook to add to
     note.content = '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">'
     note.content += '<en-note></en-note>'
     note.notebookGuid = guid
-    note = NOTE_STORE.createNote(note)
+    try:
+        note = NOTE_STORE.createNote(note)
+    except Exception:
+        return None
     NOTE_STORE.setNoteApplicationDataEntry(auth.dev_token, note.guid, "votes", "1")
-    question = Question(note.guid, NOTE_STORE)
+    question = Question(question_text, '', 1, note.guid, NOTE_STORE)
     return question
 
 def make_presentation(title):
     notebook = Types.Notebook()
     notebook.name = title
-    return NOTE_STORE.createNotebook(auth.dev_token, notebook).guid
+    try:
+        return NOTE_STORE.createNotebook(auth.dev_token, notebook).guid
+    except Exception:
+        return None
 
 def gen_student_evernote(notebook_guid): # guid of the notebook containing q's
     questions = get_sorted_questions()
@@ -56,4 +66,5 @@ def gen_student_evernote(notebook_guid): # guid of the notebook containing q's
     # get student's oauth and add to their account
 
 def get_question_by_guid(guid):
-    return Question(guid, NOTE_STORE)
+    note = NOTE_STORE.getNote(auth.dev_token, guid, False, False, False, False)
+    return Question(note.title, '', get_votes(guid), guid, NOTE_STORE)
