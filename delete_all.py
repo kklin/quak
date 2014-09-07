@@ -19,6 +19,6 @@ def delete_all():
         spec.includeTitle = True
         notes = NOTE_STORE.findNotesMetadata(dev_token, noteFilter, 0, 100, spec)
         for note in notes.notes:
-            deleteNote(dev_token, note.guid)
+            NOTE_STORE.deleteNote(dev_token, note.guid)
 
 delete_all()
