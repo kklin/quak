@@ -6,50 +6,41 @@
     <title>Quak - Index</title>
     <link href="{% static "css/master.css" %}" rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static "js/index.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/listeners.js" %}"></script>
     </head>
   <body>
     
     <div id="topbar">
-      <div id="logo"><img src="../../static/images/logo.png"></div>
+      <div id="logo"><img src="{% static "images/logo.png" %}"></div>
       <div id="title">
-        CS 61C Questions
+        {{ title }}
       </div>
     </div>
 
-      <div id="wrapper">
-    <ul id="qlist">
-      <li class="med">
-        What is internet??
-        <span class="info">
-          <div class="number">3</div>
-          <div class="vote">+</div>
-        </span>
-      </li>
-      <li class="high">
-        How do you binary??
-        <span class="info">
-          <div class="number">5</div>
-          <div class="vote">+</div>
-        </span>
-      </li>
-      <li class="none">
-        What is the secret ingredient to the Krabby Patty? fjsilfkahajerhehriowlrwhwroai
-        <span class="info">
-          <div class="number">0</div>
-          <div class="vote">+</div>
-        </span>
-      </li>
-      <li class="low">
-        How are you?
-        <span class="info">
-          <div class="number">2</div>
-          <div class="vote">+</div>
-        </span>
-      </li>
+    <div id="wrapper">
+    <ul id='qlist'>
+      {% if questions %}
+        {% for question in questions %}
+          <li class='med'>
+            {{ question.title }}
+            <span class="info">
+              <div class="number">{{ question.votes }}</div>
+              <div class="vote voteIncrement">
+                +
+                <input type='hidden' id='question_guid' value='{{ question.guid }}'>
+              </div>
+            </span>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li> No questions yet! </li>
+      {% endif %}
     </ul>
-  <form type="input" id="write">
-    <input type="text" placeholder="What do you want to ask?">
+      
+  <form action='/quakapp/newQuestion/' method='POST' id="createQuestion">
+    {% csrf_token %}
+    <input type="text" id='question_title' name='question_title' placeholder="What do you want to ask?">
+    <input type='hidden' id='presentation_guid' name='presentation_guid' value="{{ guid }}">
     <input type="submit" value=" ">
   </form>
 

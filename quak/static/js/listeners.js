@@ -1,20 +1,12 @@
 $(function() {
   $('.voteIncrement').click(function() {
-    var question_guid = $(this).parent().find('question_guid').val();
+    var question_guid = $(this).find('#question_guid').val();
+    var number = $(this).parent().find('.number');
     $.ajax({
         type: 'GET'
       , url: '/quakapp/incrementVote?guid=' + question_guid
     }).done(function(data) {
-      if (data === 'success') {
-        // here update the count on the page
-        console.log('Vote for ' + question_guid + ' updated');
-      } else if (data === 'error') {
-        // here say something went wrong
-        alert("Sorry, something went wrong! Try again in a few seconds.")
-      } else {
-        // should never be called
-        console.log("Not finding the right content");
-      }
+      number.html(parseInt(number.html()) + 1);
     }).fail(function() {
       alert('Sorry! Something went wrong.')
     });
@@ -22,22 +14,23 @@ $(function() {
 })
 
 $(function() {
-  $('#newQuestion').submit(function() {
+  $('#createQuestion').submit(function(event) {
+    /*event.preventDefault();
+    console.log('got here');
     // use the same model to create a new question
-    var question_text = $(this).find('question_text');
+    var question_title = $(this).find('question_title');
+    var presentation_guid = $('#presentation_guid').val();
     $.ajax({
         type: 'POST'
       , url: '/quakapp/newQuestion/'
       , data: {
-          'title': question_text
+            'title': question_title
+          , 'presentation_guid': presentation_guid
         }
     }).done(function() {
-      // refresh the page?
-      // or just input the new question on the page
       alert('Question posted!')
-      window.location = window.location.href;
     }).fail(function() {
-      alert("Sorry! Something went wrong. Please try again in a few moments.")''
-    })
+      alert("Sorry! Something went wrong. Please try again in a few moments.");
+    })*/
   })
 })
