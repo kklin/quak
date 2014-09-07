@@ -16,9 +16,16 @@ body {
   height: 75px;
   line-height: 75px;
   background-color: #333;
-  text-align: center;
   color: #fff;
   font-size: 22px; }
+  #topbar #logo {
+    display: inline-block;
+    float: left; }
+    #topbar #logo img {
+      height: 45px;
+      margin: 15px; }
+  #topbar #title {
+    display: inline-block; }
 
 #wrapper {
   margin: 0 auto;
@@ -39,8 +46,7 @@ li {
   text-align: left;
   color: #fff;
   border-bottom: 1px solid #0a522e;
-  font-size: 18px;
-  /*@include prefix(border-radius, 12px);*/ }
+  font-size: 18px; }
   li span {
     text-align: right; }
 
@@ -73,10 +79,18 @@ input[type="text"] {
   border: 0;
   color: #296a4b;
   height: 50px;
-  width: 60%;
+  width: 75%;
   font: 16px "Gotham";
-  padding: 10px; }
+  padding: 10px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px; }
 
 input[type="submit"] {
-  background-color: #fff;
+  background-image: url("../../static/images/arrow.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
   border: 0; }
