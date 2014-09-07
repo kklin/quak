@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Gotham';
+  src: url("fonts/Gotham-Medium.otf");
+  font-weight: normal;
+  font-style: normal; }
 html {
   box-sizing: border-box; }
 
