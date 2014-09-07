@@ -66,5 +66,5 @@ def gen_student_evernote(notebook_guid): # guid of the notebook containing q's
     # get student's oauth and add to their account
 
 def get_question_by_guid(guid):
-    note = NOTE_STORE.getNote(auth.dev_token, self.guid, False, False, False, False)
+    note = NOTE_STORE.getNote(auth.dev_token, guid, False, False, False, False)
     return Question(note.title, '', get_votes(guid), guid, NOTE_STORE)
